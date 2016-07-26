@@ -1,0 +1,55 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+//must be here to work with webpack!!
+@fontPath  : '../../@{theme}/assets/fonts';
+
+
+/*******************************
+     User Global Variables
+*******************************/
+
+@fontName          : 'Source Sans Pro';
+@headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@googleFontFamily  : 'Source+Sans+Pro:300,400,700';
+@googleFontRequest : '@{googleFontFamily}&subset=@{googleSubset}';
+
+
+/* This is the single variable that controls them all */
+@emSize   : 15px;
+/* The size of page text  */
+@fontSize : 15px;
+
+
+@textColor : rgba(0, 0, 0, 0.7);
+
+
+/*-------------------
+    Brand Colors
+--------------------*/
+
+@primaryColor        : #D82333;
+@secondaryColor      : @textColor;
+
+@lightPrimaryColor   : lighten(#D82333, 10%);
+@lightSecondaryColor : lighten(@textColor, 10%);
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor           : @primaryColor;
+
+/*-------------------
+    Border Radius
+--------------------*/
+
+/* See Power-user section below
+   for explanation of @px variables
+*/
+@relativeBorderRadius: @relative4px;
+@absoluteBorderRadius: @4px;
+
+@defaultBorderRadius: 0px;

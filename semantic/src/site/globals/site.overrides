@@ -1,0 +1,23 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+
+a.item.active-link {
+  color: @primaryColor !important;
+  background: rgba(124, 118, 118, 0.03) !important;
+}
+
+
+.ui.secondary.pointing.menu {
+  justify-content: center;
+}
+
+.ui.modal {
+  top: 35% !important;
+  transition: opacity .6s;
+}
+
+.ui.statistics .statistic > .label, .ui.statistic > .label {
+    color: rgba(0, 0, 0, 0.36) !important;
+}
