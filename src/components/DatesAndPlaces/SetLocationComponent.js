@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const Flights = [
   'Austin, TX (AUS)',
@@ -13,59 +14,103 @@ const Flights = [
   'Los Angelas, CA (LAX)',
   'New York/Kennedy, NY (JFK)',
   'New York/La Guardia, NY (LGA)',
-  'San Fransisco, CA (SFO)'
+  'San Fransisco, CA (SFO)',
   'Seattle, WA (SEA)',
   'Washington DC, WAS (WAS)'
 ];
 
 class SetLocationComponent extends React.Component {
+
+  componentDidMount(){
+
+    var that = this;
+
+    function activateDropdown(){
+    //HACK
+      if (window.$ && window.$.fn && window.$.fn.dropdown ){
+        $(ReactDOM.findDOMNode(that)).find('select').dropdown();
+      }
+      else {
+        setTimeout(activateDropdown, 100)
+      }
+    }
+    activateDropdown();
+  }
+
+  renderFrom() {
+    return (
+      <div>
+        <label>From</label>
+        <select name="" id="" onChange={function() {
+          this.props.updateVar({'departingFrom' : arguments[0].target.value})
+        }.bind(this)}>
+          {Flights.map(function(f) {
+            return <option value={f}>{f}</option>
+          })
+}
+        </select>
+      </div>
+    )
+
+  }
+
+  renderTo() {
+    return (
+      <div>
+        <label>To</label>
+        <select name="" id="" onChange={function(e) {
+          this.props.updateVar({'returningTo' : arguments[0].target.value})
+        }.bind(this)}>
+          {Flights.map(function(f) {
+            return <option value={f}>{f}</option>
+          })
+}
+        </select>
+      </div>
+    )
+  }
+
   render() {
 
-    //create from dropdown
+    //create flight type buttons
 
-    // create to dropdown
     return (
-      <div className="ui grid stacked centered">
-        <div className="five wide column">
-          <div className="field">
-            <label>From</label>
-            <div className="ui selection dropdown">
-              <input type="hidden" name="gender">
-                <i className="dropdown icon"></i>
-                <div className="default text">Gender</div>
-                <div className="menu">
-                  <div className="item" data-value="1">Male</div>
-                  <div className="item" data-value="0">Female</div>
-                </div>
-              </div>
+      <div className="ui grid stacked centered initial-flight-form">
+        <div className="sixteen wide column">
+          <h2>Where would you like to go?</h2>
+          <br/>
+        </div>
+        <div className="form">
+          <div className="five wide column">
+            <div className="ui basic three buttons tiny">
+              {
+                ['One Way', 'Round Trip', 'Multi'].map(function(b){
+
+                  let className = "ui button";
+                  if (b === 'Round Trip'){
+                    className+=" active"
+                  }
+                  return <button className={className}>{b}</button>
+                }, this)
+              }
             </div>
           </div>
           <div className="five wide column">
             <div className="field">
-              <label>To</label>
-              <div className="ui selection dropdown">
-                <input type="hidden" name="gender">
-                  <i className="dropdown icon"></i>
-                  <div className="default text">Gender</div>
-                  <div className="menu">
-                    <div className="item" data-value="1">Male</div>
-                    <div className="item" data-value="0">Female</div>
-                  </div>
-                </div>
-              </div>
+              {this.renderFrom()}
             </div>
-            <div className="five wide column">
-              <div className="field">
-                <label>Gender</label>
-                <div className="ui selection dropdown">
-                  <input type="hidden" name="gender">
-                    <i className="dropdown icon"></i>
-                    <div className="default text">Gender</div>
-                    <div className="menu">
-                      <div className="item" data-value="1">Male</div>
-                      <div className="item" data-value="0">Female</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div className="five wide column">
+            <div className="field">
+              {this.renderTo()}
             </div>
+          </div>
+        </div>
+      </div>
+    )
+
+  }
+
+}
+
+export default SetLocationComponent;

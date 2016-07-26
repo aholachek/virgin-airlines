@@ -1,6 +1,7 @@
 @import './../../semantic/src/semantic.less';
 
 @colorPrimary : #df173b;
+@colorSecondary : #7c4297;
 
 .no-opacity {
   opacity: 0;
@@ -56,4 +57,50 @@
     top: 0px;
 
 
+}
+
+.initial-flight-form .field {
+  margin: 30px auto;
+}
+
+//haacccck
+h2 {
+  font-size: 1.4rem !important;
+}
+
+label {
+  display: block;
+font-weight: bold;
+text-align: left;
+}
+
+.selection {
+  width: 100% !important;
+}
+
+button.active {
+  background-color: @colorSecondary !important;
+  color: #fff !important;
+  &:hover {
+    background-color: @colorSecondary !important;
+    color: #fff !important;
+  }
+}
+
+
+.modal-inner {
+  padding-top: 12vh;
+  height: 100vh;
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.modal-close {
+  margin: 20px auto !important;
+}
+
+body {
+max-height: 100vh;
+overflow: hidden;
 }

@@ -5,6 +5,7 @@ import Modal from 'boron/WaveModal'
 
 
 class ModalComponent extends React.Component {
+
   render() {
     return (
       <Modal
@@ -14,14 +15,18 @@ class ModalComponent extends React.Component {
         modalStyle={{
           minHeight: '100vh',
           width: '110%',
-          top: 'calc(50vh - 38px)'
-        }}
+          top: 'calc(50vh - 38px)',
+          padding: '0',
+       }}
         backdropStyle={{
           backgroundColor: 'transparent'
         }}
         >
-        <div style={{padding: '50px'}}>
+        <div className="modal-inner">
           { this.props.children }
+          <button className="fluid ui button modal-close" onClick={function(){this.refs.modal.hide()}.bind(this)}>
+            <i className="icon check circle"></i>{this.props.buttonText || 'Close'}
+          </button>
         </div>
       </Modal>
     );

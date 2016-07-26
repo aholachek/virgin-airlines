@@ -5,9 +5,9 @@ import _ from 'lodash'
 export default {
 
   guestType : undefined,
-  tripType : undefined,
+  tripType : 'Round Trip',
   departingFrom : undefined,
-  departingTo : undefined,
+  returningTo : undefined,
   departDate : undefined,
   arriveDate : undefined,
 
