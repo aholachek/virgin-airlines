@@ -3,12 +3,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {updateVariable} from 'actions/index'
-
-import Modal from './../ModalComponent'
+import { Link } from 'react-router'
 
 import SetLocation from './SetLocationComponent'
 import SetDate from './SetDateComponent'
 import Preferences from './../Preferences/PreferencesPageComponent'
+
+import {VelocityTransitionGroup} from 'velocity-react';
+import Velocity from 'velocity-animate';
+import VelocityUI from 'velocity-animate/velocity.ui';
 
 const mapStateToProps = (state, ownProps) => {
   return {data: state}
@@ -34,19 +37,6 @@ class DatesAndPlacesPageComponent extends React.Component {
     }
   }
 
-  componentDidMount() {
-    if (!this.props.data.departingFrom || !this.props.data.departingTo) {
-      this.showModal('location-modal')
-    }
-  }
-
-  showModal(modalName) {
-    this.refs[modalName].refs.modal.show()
-  }
-
-  hideModal(modalName) {
-    this.refs[modalName].refs.modal.hide();
-  }
 
   renderLocationBlock() {
 
@@ -62,7 +52,7 @@ class DatesAndPlacesPageComponent extends React.Component {
                   <b>{this.props.data.departingFrom.match(/\((.*)\)/, '')[1]}</b>&nbsp;to&nbsp;
                   <b>{this.props.data.departingTo.match(/\((.*)\)/, '')[1]}</b>
                 </p>
-                <button className="ui button basic fluid small" onClick={this.showModal.bind(this, 'location-modal')}>Change</button>
+                <Link className="ui button basic fluid small" to="/dates-and-places/1">Change</Link>
               </div>
             )
             : ''
@@ -83,18 +73,14 @@ class DatesAndPlacesPageComponent extends React.Component {
           <span>
             <h4 className="ui horizontal divider header">Departing on</h4>
             <p>{this.props.data.departDate.toDateString()}</p>
-            <button className="ui button basic fluid small" onClick={this.showModal.bind(this, 'departing-modal')}>
-              Change
-            </button>
+            <Link className="ui button basic fluid small" to="/dates-and-places/2">Change</Link>
           </span>
         )
       } else {
         departingBody = (
           <span>
             <h4 className="ui horizontal divider header">Departing on</h4>
-            <button className="ui button fluid small secondary" onClick={this.showModal.bind(this, 'departing-modal')}>
-              Pick a Departure Date
-            </button>
+              <Link className="ui button basic fluid small secondary" to="/dates-and-places/2"> Pick a Departure Date</Link>
           </span>
 
         )
@@ -117,18 +103,14 @@ class DatesAndPlacesPageComponent extends React.Component {
           <span>
             <h4 className="ui horizontal divider header">Returning on</h4>
             <p>{this.props.data.returnDate.toDateString()}</p>
-            <button className="ui button basic fluid small" onClick={this.showModal.bind(this, 'returning-modal')}>
-              Change
-            </button>
+              <Link className="ui button basic fluid small" to="/dates-and-places/3">Change</Link>
           </span>
         )
       } else {
         returningBody = (
           <span>
             <h4 className="ui horizontal divider header">Returning on</h4>
-            <button className="ui button fluid small secondary" onClick={this.showModal.bind(this, 'returning-modal')}>
-              Pick a return Date
-            </button>
+              <Link className="ui button basic fluid small secondary" to="/dates-and-places/3">Pick a Return Date</Link>
           </span>
         )
       }
@@ -150,18 +132,13 @@ class DatesAndPlacesPageComponent extends React.Component {
         preferencesBody = (
           <span>
             <h4 className="ui horizontal divider header">Flight Preferences</h4>
-            <button className="ui button basic fluid small" onClick={this.showModal.bind(this, 'preferences-modal')}>
-              Change
-            </button>
-
+              <Link className="ui button basic fluid small" to="/dates-and-places/4">Change</Link>
           </span>
         );
       } else {
         preferencesBody = (<span>
           <h4 className="ui horizontal divider header">Flight Preferences</h4>
-          <button className="ui button fluid small secondary" onClick={this.showModal.bind(this, 'preferences-modal')}>
-            Set Flight Preferences
-          </button>
+            <Link className="ui button basic fluid small secondary" to="/dates-and-places/4">Set Flight Preferences</Link>
         </span>
         )
       }
@@ -174,52 +151,93 @@ class DatesAndPlacesPageComponent extends React.Component {
   }
 
   render() {
+
+    let elToShow, anim = true;
+
+      const subPage = parseInt(this.props.params.subPage);
+        switch (subPage) {
+          case 1:
+            elToShow = <SetLocation data={this.props.data}
+              updateVar={this.props.updateVar}
+              defaultDepartingFrom={defaultDepartingFrom}
+              defaultDepartingTo={defaultDepartingTo}
+              onClose={
+                function() {
+                if (!this.props.data.departingFrom) { this.props.updateVar({departingFrom : defaultDepartingFrom }) }
+                if (!this.props.data.departingTo){ this.props.updateVar({departingTo : defaultDepartingTo }) }
+                if (this.props.data.datesAndPlacesProgress === 0) { this.props.updateVar({datesAndPlacesProgress : 1}) }
+              }.bind(this)
+              }
+              />
+            break;
+          case 2:
+            elToShow = <SetDate
+              data={this.props.data}
+              updateVar={this.props.updateVar}
+              stateVal='departDate'
+              onClose={
+                function() {
+                if (this.props.data.datesAndPlacesProgress === 1) {
+                  this.props.updateVar({datesAndPlacesProgress: 2})
+                }}.bind(this)
+              }
+              />
+            break;
+          case 3:
+            elToShow = <SetDate
+              data={this.props.data}
+              updateVar={this.props.updateVar}
+              stateVal='returnDate'
+              onClose={
+                function() {
+                if (this.props.data.datesAndPlacesProgress === 2) {
+                  this.props.updateVar({datesAndPlacesProgress: 3})
+                }}.bind(this)
+              }
+              />
+            break;
+          case 4:
+            elToShow = <Preferences
+              data={this.props.data}
+              updateVar={this.props.updateVar}
+              onClose={
+                function() {
+                if (this.props.data.datesAndPlacesProgress === 3) {
+                  this.props.updateVar({datesAndPlacesProgress: 4})
+                }}.bind(this)
+              }
+              />
+            break;
+          default:
+            anim = false;
+            elToShow = (
+              <div className="ui grid centered stackable ">
+                {this.renderLocationBlock()}
+                {this.renderDepartingBlock()}
+                {this.renderReturningBlock()}
+                {this.renderPreferencesBlock()}
+              </div>
+            )
+        }
+
+    if (anim) {
+      elToShow = (
+        <VelocityTransitionGroup enter={{
+          animation: 'transition.expandIn',
+          duration: 300,
+          delay: 200
+        }} leave={{
+          animation: 'transition.expandOut',
+          duration: 200
+        }} runOnMount>
+          { elToShow }
+        </VelocityTransitionGroup>
+      )
+    }
+
     return (
       <div className="datesandplacespage-component">
-        <div className="ui grid centered stackable ">
-
-          {this.renderLocationBlock()}
-          {this.renderDepartingBlock()}
-          {this.renderReturningBlock()}
-          {this.renderPreferencesBlock()}
-
-        </div>
-        <Modal ref="location-modal" onClose={
-            function() { //set in the defaults if necessary
-            if (!this.props.data.departingFrom) { this.props.updateVar({departingFrom : defaultDepartingFrom }) }
-            if (!this.props.data.departingTo){ this.props.updateVar({departingTo : defaultDepartingTo }) }
-            if (this.props.data.datesAndPlacesProgress ===0) { this.props.updateVar({datesAndPlacesProgress : 1}) } }.bind(this)
-            }
-            closeButton={true}>
-          <SetLocation updateVar={this.props.updateVar} data={this.props.data} defaultDepartingFrom={defaultDepartingFrom} defaultDepartingTo={defaultDepartingTo}/>
-        </Modal>
-        <Modal ref="departing-modal">
-          <SetDate updateVar={this.props.updateVar} title="Departing"
-            stateVal='departDate'
-            data={this.props.data}
-            closeModal={function() {
-            this.hideModal('departing-modal');
-            if (this.props.data.datesAndPlacesProgress === 1) {
-              this.props.updateVar({datesAndPlacesProgress: 2})
-            }
-          }.bind(this)}/>
-        </Modal>
-        <Modal ref="returning-modal">
-          <SetDate updateVar={this.props.updateVar} title="Returning" stateVal='returnDate' data={this.props.data} closeModal={function() {
-            this.hideModal('returning-modal');
-            if (this.props.data.datesAndPlacesProgress === 2) {
-              this.props.updateVar({datesAndPlacesProgress: 3})
-            }
-          }.bind(this)}/>
-        </Modal>
-        <Modal ref="preferences-modal">
-          <Preferences updateVar={this.props.updateVar} data={this.props.data} closeModal={function() {
-            this.hideModal('preferences-modal');
-            if (this.props.data.datesAndPlacesProgress === 3) {
-              this.props.updateVar({datesAndPlacesProgress: 4})
-            }
-          }.bind(this)}/>
-        </Modal>
+      { elToShow }
       </div>
     );
   }

@@ -85,20 +85,18 @@ class CustomizePageComponent extends React.Component {
             <label htmlFor="depart-bags">Departing</label>
             <select name="" id="depart-bags">
               <option value="0">0 bags</option>
-              <option value="1">1 bags</option>
-              <option value="2">2 bags</option>
-              <option value="3">3 bags</option>
-              <option value="4">4 bags</option>
+              <option value="1">1 bags (+$25)</option>
+              <option value="2">2 bags (+$50)</option>
+              <option value="3">3 bags (+$75)</option>
             </select>
           </div>
           <div className="eight wide column">
             <label htmlFor="return-bags">Returning</label>
             <select name="" id="return-bags">
               <option value="0">0 bags</option>
-              <option value="1">1 bags</option>
-              <option value="2">2 bags</option>
-              <option value="3">3 bags</option>
-              <option value="4">4 bags</option>
+              <option value="1">1 bags (+$25)</option>
+              <option value="2">2 bags (+$50)</option>
+              <option value="3">3 bags (+$75)</option>
             </select>
         </div>
         <div className="sixteen wide column" style={{'paddingBottom' : 0}}>

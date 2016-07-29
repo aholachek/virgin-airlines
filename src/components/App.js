@@ -17,8 +17,8 @@ class AppComponent extends React.Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={AppContainer}>
-          <IndexRedirect to="/dates-and-places"/>
-          <Route path="/dates-and-places" component={DatesAndPlacesPage}/>
+          <IndexRedirect to="/dates-and-places/1"/>
+          <Route path="/dates-and-places(/:subPage)" component={DatesAndPlacesPage}/>
           <Route path="/preferences" component={PreferencesPage}/>
           <Route path="/flight-list" component={FlightListPage}/>
           <Route path="/customize" component={CustomizePage}/>

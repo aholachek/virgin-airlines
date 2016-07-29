@@ -102,8 +102,7 @@ class AppContainerComponent extends React.Component {
           animation: 'transition.slideLeftOut',
           duration: 200
         }} runOnMount>
-          {React.cloneElement(this.props.children, {key: key})
-}
+          {React.cloneElement(this.props.children, {key: key})}
         </VelocityTransitionGroup>
       )
     } else {
@@ -117,8 +116,7 @@ class AppContainerComponent extends React.Component {
           animation: 'transition.slideRightOut',
           duration: 200
         }} runOnMount>
-          {React.cloneElement(this.props.children, {key: key})
-}
+          {React.cloneElement(this.props.children, {key: key})}
         </VelocityTransitionGroup>
       )
 

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router'
 
 const Flights = [
   'Austin, TX (AUS)',
@@ -83,29 +84,39 @@ class SetLocationComponent extends React.Component {
           <br/>
         </div>
         <div className="form">
-          <div className="five wide column">
-            <div className="ui basic three buttons tiny">
+          <div className="sixteen wide column">
+            <div className="ui three buttons small">
               {
                 ['One Way', 'Round Trip', 'Multi'].map(function(b){
 
-                  let className = "ui button";
+                  let className = "ui button basic";
                   if (b === 'Round Trip'){
-                    className+=" active"
+                    className+=" secondary small-padding"
+                  }
+                  if (b === 'Round Trip'){
+                    b = <span><i className="icon checkmark small"></i>{b}</span>
                   }
                   return <button className={className}>{b}</button>
                 }, this)
               }
             </div>
           </div>
-          <div className="five wide column">
+          <div className="eight wide column">
             <div className="field">
               {this.renderFrom()}
             </div>
           </div>
-          <div className="five wide column">
+          <div className="eight wide column">
             <div className="field">
               {this.renderTo()}
             </div>
+          </div>
+          <div className="sixteen wide column" style={{paddingTop: '20px'}}>
+            <Link to="/dates-and-places" className="ui button primary fluid"
+              onClick={ this.props.onClose }
+              >
+              <i className="icon plane large"></i> Let's Go!
+              </Link>
           </div>
         </div>
       </div>

@@ -65,7 +65,6 @@
   },
   "dependencies": {
     "autoprefixer": "^6.3.7",
-    "boron": "^0.2.3",
     "core-js": "^1.2.6",
     "d3": "^3.5.17",
     "fontawesome-markers": "^4.6.1",
