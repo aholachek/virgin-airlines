@@ -21,19 +21,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const routeConfig = [
   {
     route: 'dates-and-places',
-    title: 'Dates + Places'
-  }, {
-    route: 'preferences',
-    title: 'Set Preferences'
+    title: 'Search Flights'
   }, {
     route: 'flight-list',
-    title: 'Pick Flights'
+    title: 'Pick a Flight'
   }, {
     route: 'customize',
     title: 'Customize'
-  }, {
-    route: 'purchase',
-    title: 'Buy Tickets'
   }
 ];
 
@@ -144,7 +138,7 @@ class AppContainerComponent extends React.Component {
           {nextPageLink}
         </nav>
         <div style={{
-          marginTop: '80px'
+          marginTop: '65px'
         }}>
           {animationContainer}
         </div>

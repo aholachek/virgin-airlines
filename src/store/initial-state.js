@@ -7,17 +7,27 @@ export default {
   guestType : undefined,
   tripType : 'Round Trip',
   departingFrom : undefined,
-  returningTo : undefined,
+  departingTo : undefined,
   departDate : undefined,
-  arriveDate : undefined,
+  returnDate : undefined,
 
   fromFlexibility : 0,
   toFlexibility : 0,
   mustBeDirect  : false,
-  timeOfDay : ['morning', 'day', 'evening'],
-  class : [],
+  refundable : false,
+  preferencesChecked : false,
 
+  datesAndPlacesProgress : 0,
+
+  flights : {},
+
+  //user chosen flight
+  departingFlight : undefined,
+  returningFlight : undefined,
 
   checkedBagsFrom : 0,
-  checkedBagsTo : 0
+  checkedBagsTo : 0,
+
+  powerTrip : false,
+  plansChangePackage : false
 }

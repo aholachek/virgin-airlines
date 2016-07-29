@@ -31,10 +31,10 @@
 --------------------*/
 
 @primaryColor        : #D82333;
-@secondaryColor      : @textColor;
+@secondaryColor      : #7c4297;
 
 @lightPrimaryColor   : lighten(#D82333, 10%);
-@lightSecondaryColor : lighten(@textColor, 10%);
+@lightSecondaryColor : lighten(@secondaryColor, 10%);
 
 /*-------------------
        Links

@@ -41,7 +41,8 @@ class SetLocationComponent extends React.Component {
     return (
       <div>
         <label>From</label>
-        <select name="" id="" onChange={function() {
+        <select value={this.props.data.departingFrom ? this.props.data.departingFrom  : this.props.defaultDepartingFrom }
+          name="" id="" onChange={function() {
           this.props.updateVar({'departingFrom' : arguments[0].target.value})
         }.bind(this)}>
           {Flights.map(function(f) {
@@ -58,8 +59,9 @@ class SetLocationComponent extends React.Component {
     return (
       <div>
         <label>To</label>
-        <select name="" id="" onChange={function(e) {
-          this.props.updateVar({'returningTo' : arguments[0].target.value})
+        <select value={this.props.data.departingTo ? this.props.data.departingTo : this.props.defaultDepartingTo  }
+          name="" id="" onChange={function(e) {
+          this.props.updateVar({'departingTo' : arguments[0].target.value})
         }.bind(this)}>
           {Flights.map(function(f) {
             return <option value={f}>{f}</option>
@@ -77,7 +79,7 @@ class SetLocationComponent extends React.Component {
     return (
       <div className="ui grid stacked centered initial-flight-form">
         <div className="sixteen wide column">
-          <h2>Where would you like to go?</h2>
+          <h2 style={{margin: '0'}}>Where would you like to go?</h2>
           <br/>
         </div>
         <div className="form">

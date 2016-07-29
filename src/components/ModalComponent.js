@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Modal from 'boron/WaveModal'
+import Modal from './BoronOverride'
 
 
 class ModalComponent extends React.Component {
@@ -17,6 +17,8 @@ class ModalComponent extends React.Component {
           width: '110%',
           top: 'calc(50vh - 38px)',
           padding: '0',
+         'transform':'translate(-50%, -50%)'
+
        }}
         backdropStyle={{
           backgroundColor: 'transparent'
@@ -24,9 +26,17 @@ class ModalComponent extends React.Component {
         >
         <div className="modal-inner">
           { this.props.children }
-          <button className="fluid ui button modal-close" onClick={function(){this.refs.modal.hide()}.bind(this)}>
-            <i className="icon check circle"></i>{this.props.buttonText || 'Close'}
-          </button>
+          {this.props.closeButton ?
+            <button className="fluid ui button modal-close primary"
+               onClick={function(){
+                this.props.onClose();
+                this.refs.modal.hide();
+              }.bind(this)}>
+            {this.props.buttonText || 'Continue'}
+            </button>
+            : ''
+          }
+
         </div>
       </Modal>
     );
