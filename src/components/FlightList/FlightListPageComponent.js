@@ -58,16 +58,17 @@ class FlightListPageComponent extends React.Component {
             > Returning</a>
         </div>
         { (this.state.tab === 'departing')?
-          <FlightList flights={this.props.data.flights.departing}
+          <FlightList
+            flights={this.props.data.flights.departing}
             title="departing"
-            updateVar={this.props.updateVar}
             chosen={this.props.data.departingFlight}
+            updateVar={this.props.updateVar}
             />
            :
           <FlightList
             flights={this.props.data.flights.returning}
-            chosen={this.props.data.returningFlight}
             title="returning"
+            chosen={this.props.data.returningFlight}
             updateVar={this.props.updateVar}
             />
         }

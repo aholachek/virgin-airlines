@@ -72,7 +72,7 @@ class DatesAndPlacesPageComponent extends React.Component {
         departingBody = (
           <span>
             <h4 className="ui horizontal divider header">Departing on</h4>
-            <p>{this.props.data.departDate.toDateString()}</p>
+            <p className="bold">{this.props.data.departDate.toDateString()}</p>
             <Link className="ui button basic fluid small" to="/dates-and-places/2">Change</Link>
           </span>
         )
@@ -80,7 +80,7 @@ class DatesAndPlacesPageComponent extends React.Component {
         departingBody = (
           <span>
             <h4 className="ui horizontal divider header">Departing on</h4>
-              <Link className="ui button basic fluid small secondary" to="/dates-and-places/2"> Pick a Departure Date</Link>
+              <Link className="ui button fluid small secondary" to="/dates-and-places/2"> Pick a Departure Date</Link>
           </span>
 
         )
@@ -102,7 +102,7 @@ class DatesAndPlacesPageComponent extends React.Component {
         returningBody = (
           <span>
             <h4 className="ui horizontal divider header">Returning on</h4>
-            <p>{this.props.data.returnDate.toDateString()}</p>
+            <p className="bold">{this.props.data.returnDate.toDateString()}</p>
               <Link className="ui button basic fluid small" to="/dates-and-places/3">Change</Link>
           </span>
         )
@@ -110,7 +110,7 @@ class DatesAndPlacesPageComponent extends React.Component {
         returningBody = (
           <span>
             <h4 className="ui horizontal divider header">Returning on</h4>
-              <Link className="ui button basic fluid small secondary" to="/dates-and-places/3">Pick a Return Date</Link>
+              <Link className="ui button fluid small secondary" to="/dates-and-places/3">Pick a Return Date</Link>
           </span>
         )
       }
@@ -138,7 +138,7 @@ class DatesAndPlacesPageComponent extends React.Component {
       } else {
         preferencesBody = (<span>
           <h4 className="ui horizontal divider header">Flight Preferences</h4>
-            <Link className="ui button basic fluid small secondary" to="/dates-and-places/4">Set Flight Preferences</Link>
+            <Link className="ui button fluid small secondary" to="/dates-and-places/4">Set Flight Preferences</Link>
         </span>
         )
       }
@@ -159,6 +159,7 @@ class DatesAndPlacesPageComponent extends React.Component {
           case 1:
             elToShow = <SetLocation data={this.props.data}
               updateVar={this.props.updateVar}
+              key='pickLocation'
               defaultDepartingFrom={defaultDepartingFrom}
               defaultDepartingTo={defaultDepartingTo}
               onClose={
@@ -174,6 +175,7 @@ class DatesAndPlacesPageComponent extends React.Component {
             elToShow = <SetDate
               data={this.props.data}
               updateVar={this.props.updateVar}
+              key='departDate'
               stateVal='departDate'
               onClose={
                 function() {
@@ -186,6 +188,7 @@ class DatesAndPlacesPageComponent extends React.Component {
           case 3:
             elToShow = <SetDate
               data={this.props.data}
+              key='returnDate'
               updateVar={this.props.updateVar}
               stateVal='returnDate'
               onClose={
@@ -199,6 +202,7 @@ class DatesAndPlacesPageComponent extends React.Component {
           case 4:
             elToShow = <Preferences
               data={this.props.data}
+              key='preferences'
               updateVar={this.props.updateVar}
               onClose={
                 function() {
@@ -211,7 +215,7 @@ class DatesAndPlacesPageComponent extends React.Component {
           default:
             anim = false;
             elToShow = (
-              <div className="ui grid centered stackable ">
+              <div className="ui grid centered stackable " key='pickLocation'>
                 {this.renderLocationBlock()}
                 {this.renderDepartingBlock()}
                 {this.renderReturningBlock()}
@@ -220,20 +224,18 @@ class DatesAndPlacesPageComponent extends React.Component {
             )
         }
 
-    if (anim) {
       elToShow = (
         <VelocityTransitionGroup enter={{
           animation: 'transition.expandIn',
-          duration: 300,
-          delay: 200
+          duration: 200,
+          delay: 100
         }} leave={{
           animation: 'transition.expandOut',
           duration: 200
         }} runOnMount>
-          { elToShow }
+            { elToShow }
         </VelocityTransitionGroup>
       )
-    }
 
     return (
       <div className="datesandplacespage-component">

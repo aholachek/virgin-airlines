@@ -4,7 +4,27 @@ import moment from 'moment'
 
 
 export function updateVariable(data){
-  return { type: "update_variable", data : data }
+  return (dispatch, getState) => {
+
+    /*regenerate flights if they already exist and
+    some relevant parameter has changed
+    */
+
+   let need2GenerateFlights = false;
+
+    if (_.intersection(Object.keys(data),
+    ['departingFrom', 'departingTo', 'departDate',
+    'returnDate', 'fromFlexibility', 'toFlexibility']
+  ).length > 0 && Object.keys(getState().flights).length > 0){
+     data = _.assign({}, data, {departingFlight : undefined, returningFlight : undefined });
+     need2GenerateFlights = true;
+    }
+
+    dispatch({ type: "update_variable", data : data });
+
+    if (need2GenerateFlights)  dispatch(generateFlights());
+
+  }
 }
 
 

@@ -83,18 +83,24 @@ class CustomizePageComponent extends React.Component {
             </div>
           <div className="eight wide column">
             <label htmlFor="depart-bags">Departing</label>
-            <select name="" id="depart-bags">
+              <select value={this.props.data.checkedBagsFrom ? this.props.data.checkedBagsFrom  : "0"}
+                name="" id="depart-bags" onChange={function() {
+                this.props.updateVar({'checkedBagsFrom' : arguments[0].target.value})
+              }.bind(this)}>
               <option value="0">0 bags</option>
-              <option value="1">1 bags (+$25)</option>
+              <option value="1">1 bag (+$25)</option>
               <option value="2">2 bags (+$50)</option>
               <option value="3">3 bags (+$75)</option>
             </select>
           </div>
           <div className="eight wide column">
             <label htmlFor="return-bags">Returning</label>
-            <select name="" id="return-bags">
+              <select value={this.props.data.checkedBagsTo ? this.props.data.checkedBagsTo  : "0"}
+                name="" id="return-bags" onChange={function() {
+                this.props.updateVar({'checkedBagsTo' : arguments[0].target.value})
+              }.bind(this)}>
               <option value="0">0 bags</option>
-              <option value="1">1 bags (+$25)</option>
+              <option value="1">1 bag (+$25)</option>
               <option value="2">2 bags (+$50)</option>
               <option value="3">3 bags (+$75)</option>
             </select>

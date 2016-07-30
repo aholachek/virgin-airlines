@@ -138,7 +138,7 @@ class PreferencesPageComponent extends React.Component {
     return (
       <div className="preferencespage-component">
           <div className="ui grid">
-            <div className="row" style={{paddingTop : '40px'}}>
+            <div className="row" style={{paddingTop : '10vh'}}>
               <div className="sixteen wide column">
                 <h4 className="ui horizontal divider header" style={{marginTop : '0px !important'}}>How flexible are you on dates?</h4>
                 </div>
