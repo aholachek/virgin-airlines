@@ -215,7 +215,7 @@ class DatesAndPlacesPageComponent extends React.Component {
           default:
             anim = false;
             elToShow = (
-              <div className="ui grid centered stackable " key='pickLocation'>
+              <div className="ui grid centered stackable " key='locationParent'>
                 {this.renderLocationBlock()}
                 {this.renderDepartingBlock()}
                 {this.renderReturningBlock()}

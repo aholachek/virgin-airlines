@@ -13,6 +13,8 @@ import VelocityUI from 'velocity-animate/velocity.ui';
 import 'rc-drawer/assets/index.css';
 import Drawer from 'rc-drawer';
 
+const logoImg = require('./../images/virgin-logo.png');
+
 const mapStateToProps = (state, ownProps) => {
   return {data : state}
 }
@@ -240,7 +242,7 @@ class AppContainerComponent extends React.Component {
             overflow: 'hidden'
           }}></div>
           {prevPageLink}
-          <img src='./../images/virgin-logo.png' alt='' className='virgin-nav-logo'/>
+          <img src={logoImg} alt='' className='virgin-nav-logo'/>
           {nextPageLink}
         </nav>
         <div style={{

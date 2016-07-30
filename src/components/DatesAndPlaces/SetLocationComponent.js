@@ -89,9 +89,12 @@ class SetLocationComponent extends React.Component {
               {
                 ['One Way', 'Round Trip', 'Multi'].map(function(b){
 
-                  let className = "ui button basic";
+                  let className = "ui button small-padding";
                   if (b === 'Round Trip'){
-                    className+=" secondary small-padding"
+                    className+=" secondary"
+                  }
+                  else {
+                    className +=" basic"
                   }
                   if (b === 'Round Trip'){
                     b = <span><i className="icon checkmark small"></i>{b}</span>
@@ -115,7 +118,7 @@ class SetLocationComponent extends React.Component {
             <Link to="/dates-and-places" className="ui button primary fluid"
               onClick={ this.props.onClose }
               >
-              <i className="icon plane large"></i> Let's Go!
+              <i className="icon plane large" style={{margin: 0}}/>Let's Go!
               </Link>
           </div>
         </div>
