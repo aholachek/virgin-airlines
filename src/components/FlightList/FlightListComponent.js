@@ -30,7 +30,7 @@ class FlightListComponent extends React.Component {
       }
         return (
           <button className={className} onClick={_.partial(onClick, k, fl.id)}>
-            Main<br/>
+            {k}<br/>
           <b>${fl.classes[k]}</b>
           </button>
         )
