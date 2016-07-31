@@ -144,7 +144,7 @@ overflow: hidden;
 
 .button.total-cost {
   letter-spacing: .1em;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   background-image : linear-gradient(to right, rgba(160, 56, 255, 0.9) 0%, rgba(255, 44, 44, 0.9) 100%) !important;
   color: white;
   position: absolute !important;
@@ -155,6 +155,12 @@ overflow: hidden;
   height: 75px;
   border-radius: 50%;
   opacity: .95;
+  transition: box-shadow .4s;
+}
+
+.button.total-cost:hover {
+  color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
 }
 
 .button.secondary {

@@ -43,19 +43,26 @@ class FlightListPageComponent extends React.Component {
   render() {
     return (
       <div className="flightlistpage-component">
-        <h4 className="ui horizontal divider header">
-          <i className="plane icon"></i>
-          Pick your flights
-        </h4>
         <div className="ui pointing secondary menu">
           <a className={this.state.tab === 'departing'
             ? 'active item':'item'}
-            onClick={function(){this.setState({tab : 'departing'})}.bind(this)}> Departing</a>
+            onClick={function(){this.setState({tab : 'departing'})}.bind(this)}>
+            <i className="plane icon"></i>
+             Pick Departing</a>
           <a className={this.state.tab === 'returning'
             ? 'active item'
             : 'item'}
             onClick={function(){this.setState({tab : 'returning'})}.bind(this)}
-            > Returning</a>
+            >
+            <i className="plane icon"></i>
+            Pick Returning</a>
+        </div>
+        <div>
+          <div className="ui buttons compact" style={{marginBottom: '10px'}}>
+            <button className="ui button basic toggle"><i className="icon sort"></i> duration</button>
+            <button className="ui button toggle "><i className="icon sort"></i>  date</button>
+            <button className="ui button basic toggle"><i className="icon sort"></i> price</button>
+          </div>
         </div>
         { (this.state.tab === 'departing')?
           <FlightList

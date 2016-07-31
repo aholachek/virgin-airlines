@@ -246,7 +246,7 @@ class AppContainerComponent extends React.Component {
           {nextPageLink}
         </nav>
         <div style={{
-          marginTop: '65px'
+          marginTop: '55px'
         }}>
           {animationContainer}
         </div>
